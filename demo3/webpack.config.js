@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path')
 module.exports={
   // mode: 'production',
@@ -19,9 +20,16 @@ module.exports={
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          },
           'css-loader',
-        ]
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
@@ -46,6 +54,13 @@ module.exports={
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
   ]
 }
