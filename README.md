@@ -17,3 +17,8 @@ webpack基本使用
 每点击一下add Item按钮就会在页面上增加一个item元素，奇数元素的背景色为粉色。
 如果这时候改一下背景色：
 页面会重新刷新，那么之前添加的item就都没了。
+
+## demo5 tree shaking
+用于描述移除 JavaScript 上下文中的未引用代码(dead-code)
+
+**测试发现 mode为production的时候已经自动去掉**
