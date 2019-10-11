@@ -1,3 +1,4 @@
+## webpack 4.41.0
 ## demo1 起步
 webpack基本使用
 
@@ -22,3 +23,24 @@ webpack基本使用
 用于描述移除 JavaScript 上下文中的未引用代码(dead-code)
 
 **测试发现 mode为production的时候已经自动去掉**
+
+## demo6 代码分离
+插件可以将公共的依赖模块提取到已有的入口 chunk 中，或者提取到一个新生成的 chunk。
+让我们使用这个插件，将之前的示例中重复的 lodash 模块去除
+
+```js
+optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
+  },
+```
+
+- [optimization文档](https://www.webpackjs.com/plugins/split-chunks-plugin/#optimization-splitchunks-chunks-all)
+- [bundle 分析(bundle analysis)](https://github.com/webpack-contrib/webpack-bundle-analyzer)
