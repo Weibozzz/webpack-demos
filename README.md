@@ -61,6 +61,13 @@ button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(mod
 ## demo8 缓存
 > 我们在部署新版本时不更改资源的文件名，浏览器可能会认为它没有被更新，就会使用它的缓存版本。
 
+-  把公共库提取出来
+```
+entry: {
+    app: './src/index.js',
+    vendor: ['lodash','jquery','react']
+  }
+```
 - 输出文件的文件名(Output Filenames)
 
 通过使用 output.filename 进行文件名替换，可以确保浏览器获取到修改后的文件。
@@ -139,7 +146,7 @@ require(['webpackNumbers'], function ( webpackNumbers) {
 
 可通过[output.libraryTarget](https://www.webpackjs.com/configuration/output/#output-librarytarget)配置
 
-# demo10 shimming 全局变量
+## demo10 shimming 全局变量
 
 还记得我们之前用过的 `lodash` 吗？出于演示的目的，
 让我们把这个模块作为我们应用程序中的一个全局变量。要实现这些，
@@ -150,3 +157,31 @@ require(['webpackNumbers'], function ( webpackNumbers) {
 如果 `webpack` 知道这个变量在某个模块中被使用了，那么 `webpack` 
 将在最终 `bundle` 中引入我们给定的 `package`。让我们先移除 `lodash` 的 `import` 语句，
 并通过插件提供它：
+
+## demo11 配置react和CSS Module
+配置`.babelrc`文件
+```
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+```
+- babel preset env 负责将ES6语法转换成ES5
+- babel preset react 负责将JSX语法转化为JavaScript
+
+配置 css module
+```
+{
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ]
+}
+```
