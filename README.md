@@ -138,3 +138,15 @@ require(['webpackNumbers'], function ( webpackNumbers) {
 打包后可以看到 `webpack-numbers.js` 中源码  `var webpackNumbers=function(e)...`
 
 可通过[output.libraryTarget](https://www.webpackjs.com/configuration/output/#output-librarytarget)配置
+
+# demo10 shimming 全局变量
+
+还记得我们之前用过的 `lodash` 吗？出于演示的目的，
+让我们把这个模块作为我们应用程序中的一个全局变量。要实现这些，
+我们需要使用 `ProvidePlugin` 插件。
+
+使用 `ProvidePlugin` 后，能够在通过 `webpack` 
+编译的每个模块中，通过访问一个变量来获取到 `package` 包。
+如果 `webpack` 知道这个变量在某个模块中被使用了，那么 `webpack` 
+将在最终 `bundle` 中引入我们给定的 `package`。让我们先移除 `lodash` 的 `import` 语句，
+并通过插件提供它：
