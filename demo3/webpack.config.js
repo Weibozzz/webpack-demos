@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 通过 npm 安装
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 module.exports={
   // mode: 'production',
@@ -54,6 +55,9 @@ module.exports={
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management'
+    }),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: ['dist']
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
