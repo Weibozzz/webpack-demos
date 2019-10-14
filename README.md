@@ -1,4 +1,4 @@
-## webpack 4.41.0
+## webpack 4.41.0 指南
 ## demo1 起步
 webpack基本使用
 
@@ -7,7 +7,7 @@ webpack基本使用
 - 加载图片 xml csv
 
 ## demo3 管理输出
-
+- [clean-webpack-plugin 清理 /dist 文件夹](https://github.com/johnagan/clean-webpack-plugin)
 - [将 CSS 分离成单独的文件](https://github.com/webpack-contrib/mini-css-extract-plugin)
 
 ## demo4 模块热替换（HMR）
@@ -44,3 +44,9 @@ optimization: {
 
 - [optimization文档](https://www.webpackjs.com/plugins/split-chunks-plugin/#optimization-splitchunks-chunks-all)
 - [bundle 分析(bundle analysis)](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+
+## demo7 懒加载
+> 懒加载或者按需加载，是一种很好的优化网页或应用的方式。
+这种方式实际上是先把你的代码在一些逻辑断点处分离开，
+然后在一些代码块中完成某些操作后，立即引用或即将引用另外一些新的代码块。
+这样加快了应用的初始加载速度，减轻了它的总体体积，**因为某些代码块可能永远不会被加载**。
