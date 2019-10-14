@@ -50,3 +50,38 @@ optimization: {
 这种方式实际上是先把你的代码在一些逻辑断点处分离开，
 然后在一些代码块中完成某些操作后，立即引用或即将引用另外一些新的代码块。
 这样加快了应用的初始加载速度，减轻了它的总体体积，**因为某些代码块可能永远不会被加载**。
+
+```js
+// 例子
+button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+    var print = module.default
+    print()
+  })
+```
+## demo8 缓存
+> 我们在部署新版本时不更改资源的文件名，浏览器可能会认为它没有被更新，就会使用它的缓存版本。
+
+- 输出文件的文件名(Output Filenames)
+
+通过使用 output.filename 进行文件名替换，可以确保浏览器获取到修改后的文件。
+`filename: '[name].[chunkhash].js'`
+
+- 提取模板(Extracting Boilerplate)
+![](./images/manifest-webpack-before.jpg)
+每次 `print.js` 文件修改之后都会造成 `app print` 重新打包,甚至导致`vender`。那么如何解决这个问题呢。
+
+```js
+optimization: {
+    runtimeChunk: {
+      name: 'manifest'
+    },
+  },
+```
+
+解决的方法是利用一个 `manifest` 来记录 vendor 的 id ，
+如果`vendor`没改变，则不需要重新打包。
+
+让我们再次构建，然后查看提取出来的 `manifest bundle`：
+![](./images/manifest-wenpack.jpg)
+重新打包发现`print.js`的`hash`变化了相当于重新打包了`print.js`，
+
