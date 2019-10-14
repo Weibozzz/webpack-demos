@@ -85,3 +85,56 @@ optimization: {
 ![](./images/manifest-wenpack.jpg)
 重新打包发现`print.js`的`hash`变化了相当于重新打包了`print.js`，
 
+## demo9 创建 library
+> 由于webpack打包后不会暴露全剧变量，用户不可通过script引入，需要暴露出来。
+CommonJS，AMD，Node.js 或者作为一个全局变量。
+为了让你的 library 能够在各种用户环境(consumption)中可用，
+需要在 output 中添加 library 属性：
+
+该 library 的使用方式如下：
+```js
+
+// ES2015 模块引入
+import * as webpackNumbers from 'webpack-numbers';
+// CommonJS 模块引入
+var webpackNumbers = require('webpack-numbers');
+// ...
+// ES2015 和 CommonJS 模块调用
+webpackNumbers.wordToNum('Two');
+// ...
+// AMD 模块引入
+require(['webpackNumbers'], function ( webpackNumbers) {
+  // ...
+  // AMD 模块调用
+  webpackNumbers.wordToNum('Two');
+  // ...
+});
+```
+用户还可以通过 script 标签来加载和使用此 library：
+```html
+<!doctype html>
+<html>
+  ...
+  <script src="https://unpkg.com/webpack-numbers"></script>
+  <script>
+    // ...
+    // 全局变量
+    webpackNumbers.wordToNum('Five')
+    // window 对象中的属性
+    window.webpackNumbers.wordToNum('Five')
+    // ...
+  </script>
+</html>
+```
+暴露 `library`
+
+```js
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'webpack-numbers.js'
+      library: 'webpackNumbers'
+    },
+```
+打包后可以看到 `webpack-numbers.js` 中源码  `var webpackNumbers=function(e)...`
+
+可通过[output.libraryTarget](https://www.webpackjs.com/configuration/output/#output-librarytarget)配置
