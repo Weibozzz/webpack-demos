@@ -1,5 +1,50 @@
-## webpack 4.41.0 指南
 This repo is a collection of simple demos of Webpack.
+## How to use
+```sh
+git clone https://github.com/Weibozzz/webpack-demos.git
+cd webpack-demos/demo1
+npm install
+npm start
+```
+
+Some command-line options you should know.
+
+- `webpack` – building for development
+- `webpack -p` – building for production (minification)
+- `webpack --watch` – for continuous incremental building
+- `webpack -d` – including source maps
+- `webpack --colors` – making building output pretty
+
+You could customize `scripts` field in your package.json file as following.
+
+```javascript
+// package.json
+{
+  // ...
+  "scripts": {
+    "dev": "webpack-dev-server --devtool eval --progress --colors",
+    "deploy": "NODE_ENV=production webpack -p"
+  },
+  // ...
+}
+```
+
+
+## Index
+1. [起步](#demo1-起步)
+1. [管理资源](#demo2-管理资源)
+1. [管理输出](#demo3-管理输出)
+1. [模块热替换（HMR）](#demo4-模块热替换（HMR）)
+1. [tree shaking](#demo5-tree shaking)
+1. [代码分离](#demo6-代码分离)
+1. [懒加载](#demo7-懒加载)
+1. [缓存](#demo8-缓存)
+1. [创建 library](#demo9-创建-library)
+1. [shimming 全局变量](#demo10-shimming-全局变量)
+1. [配置react和CSS Module](#demo11-配置react和CSS-Module)
+1. [生产环境构建](#demo12-生产环境构建)
+
+## webpack 4.41.0 指南
 ## demo1 起步
 webpack基本使用
 
