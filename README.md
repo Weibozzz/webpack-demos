@@ -1,4 +1,5 @@
 ## webpack 4.41.0 指南
+This repo is a collection of simple demos of Webpack.
 ## demo1 起步
 webpack基本使用
 
@@ -185,3 +186,11 @@ require(['webpackNumbers'], function ( webpackNumbers) {
         ]
 }
 ```
+## demo12 生产环境构建
+开发环境(development)和生产环境(production)的构建目标差异很大
+
+- webpack.dev.js
+- webpack.prod.js
+- webpack.common.js
+- [source map](https://www.webpackjs.com/configuration/devtool/)
+- [指定环境 process.env.NODE_ENV] (https://www.webpackjs.com/guides/production/#%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83)
