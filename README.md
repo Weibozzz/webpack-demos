@@ -35,7 +35,7 @@ You could customize `scripts` field in your package.json file as following.
 1. [管理资源](#demo2-管理资源)
 1. [管理输出](#demo3-管理输出)
 1. [模块热替换（HMR）](#demo4-模块热替换（HMR）)
-1. [tree shaking](#demo5-tree shaking)
+1. [tree shaking](#demo5-tree-shaking)
 1. [代码分离](#demo6-代码分离)
 1. [懒加载](#demo7-懒加载)
 1. [缓存](#demo8-缓存)
