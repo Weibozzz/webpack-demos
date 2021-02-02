@@ -65,6 +65,21 @@ webpack基本使用
 如果这时候改一下背景色：
 页面会重新刷新，那么之前添加的item就都没了。
 
+### 模块热替换
+无刷新热替换
+
+<https://www.webpackjs.com/guides/hot-module-replacement/>
+
+```js
+// 无刷新热更新
+if (module.hot) {
+  module.hot.accept('./print.js', function () {
+    console.log('Accepting the updated printMe module!')
+    printMe()
+  })
+}
+```
+
 ## demo5 tree shaking
 用于描述移除 JavaScript 上下文中的未引用代码(dead-code)
 
